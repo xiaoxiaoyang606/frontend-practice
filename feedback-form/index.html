@@ -1,6 +1,10 @@
 <!DOCTYPE html>
+    <html lang="zh-CN">
+<head>
+    <meta  charset="UTF-8">
     <meta  name="viewport"  content="width=device-width,  initial-scale=1.0">
     <title>课程反馈</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
@@ -9,9 +13,6 @@
     </header>
     <nav>
         <a  href="#intro">填写说明</a>
-<html  lang="zh-CN">
-<head>
-    <meta  charset="UTF-8">
         <a  href="#form">开始填写</a>
     </nav>
     <main>
@@ -23,8 +24,8 @@
             <h2>反馈表单</h2>
             <form  action="#"  method="get">
                 <p>
-                    <label  for="name">姓名（可填呢称）</label>
-                    <input  type="text"  id="name"  name="name"  placeholder="怎么称呼你”  required>
+                    <label  for="name">姓名（可填昵称）</label>
+                    <input  type="text"  id="name"  name="name"  placeholder="怎么称呼你"   required>
                 </p>
                 <p>
                     <label  for="mail">邮箱</label>
@@ -37,13 +38,14 @@
                    <label><input  type="radio"  name="score"  value="3">一般</label>
                </p>
                <p>想深入的主题（可多选）</p>
+               <p>
                    <label><input  type="checkbox"  name="topic"  value="layout">页面布局</label>
                    <label><input  type="checkbox"  name="topic"  value="Js">Javascript</label>
                    <label><input  type="checkbox"  name="topic"  value="chart">数据可视化</label>
                </p>
                <p>
                <label  for="advice">具体建议</label><br>
-               <textarea  id="advice"  name="advice"  row="4"  maxlength="128'  placeholder="说点什么"></textarea>
+               <textarea  id="advice"  name="advice"  rows="4"  maxlength="128" placeholder="说点什么"></textarea>
                </p>
                <p>
                    <button  type="submit">提交反馈</button>
