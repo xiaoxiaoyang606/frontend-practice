@@ -21,16 +21,48 @@
         </section>
         <section id ="form">
             <h2>调研表单</h2>
-            <p>（表单下一步在这里）</p>
+            <form  action="#"  method="get">
+                <p>
+                    <label  for="name">姓名</label>
+                    <input  type="text"  id="name"  name="name"    required>
+                </p>
+                <p>
+                    <label for="studentld">学号</label>
+                    <input type="text" id="studentld" name="studentld" required>
+                </p>
+                <p>
+                    <label for="major">专业</label>
+                    <input type="text" id="major" name="major" required>
+                <p>
+                    <label  for="mail">邮箱</label>
+                    <input  type="email"  id="mail">
+               </p>
+               <p>运动时间</p>
+               <p>
+                   <label><input  type="radio"  name="time"  value="morning"  checked>早上</label>
+                   <label><input  type="radio"  name="time"  value="afternoon">下午</label>
+                   <label><input  type="radio"  name="time"  value="evening">晚上</label>
+               </p>
+               <p>喜欢的体育课（可多选）</p>
+               <p>
+                   <label><input  type="checkbox"  name="topic"  value="basketball">篮球</label>
+                   <label><input  type="checkbox"  name="topic"  value="badminton">羽毛球</label>
+                   <label><input  type="checkbox"  name="topic"  value="running">跑步</label>
+                   <label><input  type="checkbox"  name="topic"  value="soccer">足球</label>
+                    <label><input  type="checkbox"  name="topic"  value="others">其他</label>
+               </p>
+               <p>
+               <label  for="advice">若有其他问题，填写下面</label><br>
+               <textarea  id="advice"  name="advice"  rows="4"  maxlength="128" placeholder="说点什么"></textarea>
+               </p>
+               <p>
+                   <button  type="submit">提交反馈</button>
+              </p>
+          </form>
         </section>
     </main>
     <footer>
-        <p>某某大学体育运动情况问卷调查<p>
-    </footer>
-</body>
-</html>
 
 
-
-
-        
+             
+         
