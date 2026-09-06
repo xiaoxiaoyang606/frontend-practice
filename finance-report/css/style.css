@@ -139,3 +139,35 @@ footer {
     color: #6c757d;
     padding: 24px 16px;
 }
+
+/* ===== 响应式断点 ===== */
+
+/* 手机（<768px）：导航居中堆叠，标题缩小 */
+@media (max-width: 767px) {
+    .nav-wrap {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+
+/* 平板（≥768px）：卡片内边距加大 */
+@media (min-width: 768px) {
+    .report-card {
+        padding: 20px;
+    }
+}
+
+/* 桌面（≥992px）：区块留白与指标数字进一步放大 */
+@media (min-width: 992px) {
+    section {
+        padding: 32px 16px;
+    }
+
+    .metric-num {
+        font-size: 40px;
+    }
+}
