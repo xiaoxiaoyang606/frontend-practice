@@ -1,0 +1,141 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", sans-serif;
+    margin: 0;
+    color: #333;
+    background: #f8f9fa;
+}
+
+/* ===== 导航：Flex布局，logo靠左、链接靠右 ===== */
+.site-header {
+    background: #ffffff;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.nav-wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 18px;
+    color: #1d3557;
+    text-decoration: none;
+}
+
+.main-nav {
+    display: flex;
+    gap: 16px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #1d3557;
+}
+
+/* ===== 通用区块 ===== */
+section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+.section-sub {
+    color: #6c757d;
+}
+
+/* ===== 核心指标：Flex三块 ===== */
+.metric-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.metric {
+    flex: 1 1 200px;
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.metric-num {
+    font-size: 32px;
+    font-weight: bold;
+    color: #1d3557;
+}
+
+.metric-label {
+    color: #6c757d;
+}
+
+.metric-change {
+    font-weight: bold;
+}
+
+.up {
+    color: #198754;
+}
+
+.down {
+    color: #dc3545;
+}
+
+/* ===== 业务板块：Grid卡片墙 ===== */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.report-card {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.report-card h3 {
+    margin: 0 0 8px;
+    color: #1d3557;
+}
+
+.card-num {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 4px;
+}
+
+.card-change {
+    margin: 0 0 8px;
+    font-weight: bold;
+}
+
+/* ===== 展望与页脚 ===== */
+#outlook p {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    line-height: 1.8;
+}
+
+footer {
+    text-align: center;
+    color: #6c757d;
+    padding: 24px 16px;
+}
