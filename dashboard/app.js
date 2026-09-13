@@ -44,8 +44,25 @@ const renderCards = (data) => {
   });
 };
 
-// ECharts 柱状图（第二步实现）
+// ECharts 柱状图：每个分类一根柱子，高度为该分类四个月借阅总量
+let barChart = null;
 const renderBarChart = (data) => {
+  barChart = echarts.init(document.getElementById('bar-chart'));
+  barChart.setOption({
+    tooltip: { trigger: 'axis' },
+    xAxis: {
+      type: 'category',
+      data: data.series.map(s => s.category)
+    },
+    yAxis: { type: 'value' },
+    series: [{
+      type: 'bar',
+      data: data.series.map(s => s.counts.reduce((sum, n) => sum + n, 0)),
+      itemStyle: { color: '#3a7bd5' }
+    }]
+  });
+  // 窗口缩放时让图表跟随重绘
+  window.addEventListener('resize', () => barChart.resize());
 };
 
 // Chart.js 折线图（第三步实现）
