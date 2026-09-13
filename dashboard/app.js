@@ -65,8 +65,25 @@ const renderBarChart = (data) => {
   window.addEventListener('resize', () => barChart.resize());
 };
 
-// Chart.js 折线图（第三步实现）
+// Chart.js 折线图：横轴四个月，每个分类一条折线展示借阅趋势
+let lineChart = null;
 const renderLineChart = (data) => {
+  lineChart = new Chart(document.getElementById('line-chart'), {
+    type: 'line',
+    data: {
+      labels: data.months,
+      datasets: data.series.map(s => ({
+        label: s.category,
+        data: s.counts,
+        tension: 0.3,
+        fill: false
+      }))
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
 };
 
 loadData();
