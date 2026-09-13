@@ -83,8 +83,28 @@ const renderCards = (city) => {
   });
 };
 
+// ECharts 柱状图：本周每日降水量。柱子高度对比，适合比较各日降水多少
+let barChart = null;
 const renderBarChart = (city) => {
-  // 第二步实现
+  if (barChart === null) {
+    barChart = echarts.init(document.querySelector('#bar-chart'));
+    window.addEventListener('resize', () => barChart.resize());
+  }
+  barChart.setOption({
+    title: { text: city.city + ' · 本周每日降水量（单位：mm）', left: 'center' },
+    tooltip: {
+      trigger: 'axis',
+      valueFormatter: v => v + ' mm'
+    },
+    xAxis: { type: 'category', data: city.days.map(d => d.day) },
+    yAxis: { type: 'value', name: '降水量（mm）' },
+    series: [{
+      name: '降水量',
+      type: 'bar',
+      data: city.days.map(d => d.rain),
+      itemStyle: { color: '#2f80c9' }
+    }]
+  });
 };
 
 const renderLineChart = (city) => {
