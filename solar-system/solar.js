@@ -72,6 +72,29 @@ planetData.forEach(d => {
 
   planetPivots.push({ pivot, planet, speed: d.speed });
 });
+// ===== 星空：800 颗随机分布的白点 =====
+const starGeometry = new THREE.BufferGeometry();
+const starPositions = [];
+for (let i = 0; i < 800; i++) {
+  // 在半径 80~400 的大球壳内随机撒点
+  const r = 80 + Math.random() * 320;
+  const theta = Math.random() * Math.PI * 2;      // 水平方向随机角
+  const phi = Math.acos(2 * Math.random() - 1);   // 竖直方向随机角
+  starPositions.push(
+    r * Math.sin(phi) * Math.cos(theta),
+    r * Math.cos(phi),
+    r * Math.sin(phi) * Math.sin(theta)
+  );
+}
+starGeometry.setAttribute(
+  'position',
+  new THREE.Float32BufferAttribute(starPositions, 3)
+);
+const stars = new THREE.Points(
+  starGeometry,
+  new THREE.PointsMaterial({ color: 0xffffff, size: 0.7 })
+);
+scene.add(stars);
 // ===== 动画循环 =====
 const animate = () => {
   requestAnimationFrame(animate);
