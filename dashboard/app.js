@@ -44,46 +44,61 @@ const renderCards = (data) => {
   });
 };
 
-// ECharts 柱状图：每个分类一根柱子，高度为该分类四个月借阅总量
+// ECharts 柱状图：横轴四个月，每个分类一组柱子；图例可点击切换品类
 let barChart = null;
 const renderBarChart = (data) => {
-  barChart = echarts.init(document.getElementById('bar-chart'));
+  if (barChart === null) {
+    barChart = echarts.init(document.querySelector('#bar-chart'));
+  }
   barChart.setOption({
+    title: { text: '各月各品类借阅量', left: 'center' },
     tooltip: { trigger: 'axis' },
-    xAxis: {
-      type: 'category',
-      data: data.series.map(s => s.category)
-    },
-    yAxis: { type: 'value' },
-    series: [{
+    legend: { bottom: 0 },
+    xAxis: { type: 'category', data: data.months },
+    yAxis: { type: 'value', name: '册' },
+    series: data.series.map(s => ({
+      name: s.category,
       type: 'bar',
-      data: data.series.map(s => s.counts.reduce((sum, n) => sum + n, 0)),
-      itemStyle: { color: '#3a7bd5' }
-    }]
+      data: s.counts
+    }))
   });
-  // 窗口缩放时让图表跟随重绘
-  window.addEventListener('resize', () => barChart.resize());
 };
 
 // Chart.js 折线图：横轴四个月，每个分类一条折线展示借阅趋势
 let lineChart = null;
 const renderLineChart = (data) => {
-  lineChart = new Chart(document.getElementById('line-chart'), {
+  if (lineChart !== null) {
+    lineChart.destroy();   // 防重复初始化
+  }
+  const ctx = document.querySelector('#line-chart');
+  lineChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels: data.months,
       datasets: data.series.map(s => ({
         label: s.category,
         data: s.counts,
-        tension: 0.3,
-        fill: false
+        borderWidth: 1
       }))
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
+      plugins: {
+        title: { display: true, text: '借阅趋势（单位：册）' }
+      }
     }
   });
 };
+
+// 窗口拉伸：柱状图手动 resize；Chart.js 响应式默认自动处理
+window.addEventListener('resize', () => {
+  if (barChart) barChart.resize();
+});
+
+// 选做进阶：点击卡片切换高亮（jQuery 事件委托）
+$('#cards').on('click', '.card', function () {
+  $(this).toggleClass('border-primary shadow');
+});
 
 loadData();
