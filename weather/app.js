@@ -107,8 +107,42 @@ const renderBarChart = (city) => {
   });
 };
 
+// Chart.js 折线图：本周最高温/最低温两条线，折线最适合表现随时间变化的趋势
+let lineChart = null;
 const renderLineChart = (city) => {
-  // 第三步实现
+  if (lineChart !== null) {
+    lineChart.destroy();   // 切换城市前销毁旧图，防重复初始化
+  }
+  lineChart = new Chart(document.querySelector('#line-chart'), {
+    type: 'line',
+    data: {
+      labels: city.days.map(d => d.day),
+      datasets: [
+        {
+          label: '最高气温（℃）',
+          data: city.days.map(d => d.high),
+          borderColor: '#d9534f',
+          borderWidth: 2,
+          tension: 0.3
+        },
+        {
+          label: '最低气温（℃）',
+          data: city.days.map(d => d.low),
+          borderColor: '#5bc0de',
+          borderWidth: 2,
+          tension: 0.3
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: { display: true, text: city.city + ' · 本周气温变化（单位：℃）' }
+      },
+      scales: { y: { title: { display: true, text: '气温（℃）' } } }
+    }
+  });
 };
 
 loadData();
